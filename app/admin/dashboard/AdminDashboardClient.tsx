@@ -331,33 +331,33 @@ function ProfileTab({
           {/* Avatar */}
           <div>
             <p className="text-text-muted text-xs uppercase tracking-wider mb-3" style={{ fontFamily: 'var(--font-jetbrains)' }}>
-              Profile Avatar
+              Profile Avatar URL
             </p>
             {form.avatarUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={form.avatarUrl} alt="avatar" className="w-20 h-20 rounded-2xl object-cover border border-white/10 mb-3" />
             )}
-            <label className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 hover:border-accent/30 text-text-secondary hover:text-accent cursor-pointer transition-all text-sm w-fit">
-              <Upload size={15} />
-              {uploading ? 'Uploading...' : 'Upload Avatar'}
-              <input type="file" accept="image/*" onChange={handleAvatarUpload} className="hidden" />
-            </label>
+            <Input 
+              value={form.avatarUrl || ''} 
+              onChange={(e) => set('avatarUrl', e.target.value)} 
+              placeholder="https://imgur.com/... or Google Drive Link" 
+            />
           </div>
           {/* CV */}
           <div>
             <p className="text-text-muted text-xs uppercase tracking-wider mb-3" style={{ fontFamily: 'var(--font-jetbrains)' }}>
-              Resume / CV (PDF)
+              Resume / CV URL (PDF)
             </p>
             {form.cvUrl && (
               <a href={form.cvUrl} target="_blank" rel="noopener noreferrer" className="block text-accent text-xs mb-3 hover:underline">
-                Current: {form.cvUrl.split('/').pop()}
+                Current CV Link
               </a>
             )}
-            <label className="flex items-center gap-2 px-4 py-2 rounded-xl border border-accent/30 text-accent hover:bg-accent/8 cursor-pointer transition-all text-sm w-fit">
-              <Upload size={15} />
-              {uploading ? 'Uploading...' : 'Upload CV (PDF)'}
-              <input type="file" accept="application/pdf" onChange={handleCVUpload} className="hidden" />
-            </label>
+            <Input 
+              value={form.cvUrl || ''} 
+              onChange={(e) => set('cvUrl', e.target.value)} 
+              placeholder="https://drive.google.com/..." 
+            />
           </div>
         </div>
       </div>
